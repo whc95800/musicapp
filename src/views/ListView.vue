@@ -29,7 +29,7 @@ export default {
       let result = await getPlayListDetail(id)
       state.playlist = result.data.playlist
       store.commit('setPlayList',state.playlist.tracks)
-      console.log(state.playlist.tracks)
+      // console.log(state.playlist.tracks)
     })
 
     return{state}

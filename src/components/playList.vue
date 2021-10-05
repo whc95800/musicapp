@@ -28,7 +28,7 @@
           </div>
         </div>
         <div class="right">
-          <svg class="icon" aria-hidden="true">
+          <svg class="icon" aria-hidden="true" @click="setPlayIndex(i)">
             <use xlink:href="#icon-lanlvtubiaozhizuomoban-23"></use>
           </svg>
           <svg class="icon" aria-hidden="true">
@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import {reactive} from "vue";
+import {mapMutations} from "vuex";
 
 export default {
   name: "playList",
@@ -58,8 +58,7 @@ export default {
       }
       return res
     }
-
-    return{changeValue}
+    return{changeValue,...mapMutations(['setPlayIndex'])}
   }
 }
 </script>

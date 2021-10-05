@@ -17,3 +17,5 @@ export function getMusicList(limit=10){
 export function getPlayListDetail(id){
   return axios.get(`${baseUrl}/playlist/detail?id=${id}`)
 }
+
+

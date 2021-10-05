@@ -1,9 +1,9 @@
 <template>
   <div class="playController">
-    <div class="left">
+    <div class="left" @click="show = !show">
       <img :src="playlist[playCurrentIndex].al.picUrl" alt="">
       <div class="content">
-        <div class="title">{{playlist[playCurrentIndex].al.name}}</div>
+        <div class="title">{{playlist[playCurrentIndex].name}}</div>
         <div class="tips">横滑可以切换上下首</div>
       </div>
     </div>
@@ -18,6 +18,7 @@
         <use xlink:href="#icon-24gl-playlistMusic"></use>
       </svg>
     </div>
+    <play-music @back="show = !show" v-show="show" :playDetail="playlist[playCurrentIndex]"></play-music>
     <audio ref="audio" :src='`https://music.163.com/song/media/outer/url?id=${playlist[playCurrentIndex].id}.mp3`'></audio>
   </div>
 </template>
@@ -25,15 +26,18 @@
 <script>
 import {mapState,mapMutations} from 'vuex'
 import {ref} from "vue";
+import PlayMusic from "@/components/playMusic";
 export default {
   name: "playController",
+  components: {PlayMusic},
   computed:{
     ...mapState(['playlist','playCurrentIndex'])
   },
 
   setup(){
-    let paused = ref({})
-    return{paused}
+    let paused = ref(true)
+    let show = ref(false)
+    return{paused,show}
   },
 
   methods:{
